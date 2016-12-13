@@ -1,0 +1,43 @@
+{
+  "name": "graphql-koa",
+  "version": "0.1.0",
+  "description": "none",
+  "author": "iamchenxin",
+  "main": "./lib/index.js",
+  "files": [],
+  "scripts": {
+    "test": "npm run jest",
+    "lint": "node_modules/.bin/eslint .",
+    "jest": "NODE_ENV=test jest $@",
+    "build": "gulp build",
+    "start": "node ./lib/index.js",
+    "dev": "npm run start",
+    "bnode": "NODE_ENV=dev babel-node"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "init-scripts": "^0.0.2",
+    "init-preset-node": "^6.8.5",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "flow-bin": "^0.36.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "jest": "^17.0.3",
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.11.1",
+    "eslint-config-fbjs": "^1.1.1",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-flowtype": "^2.29.1",
+    "eslint-plugin-react": "^5.2.2",
+    "supertest": "^2.0.1",
+    "supertest-as-promised": "^4.0.2"
+  },
+  "iappinfo": {
+    "tag": null,
+    "commit": "f2d045643ef03cdeb5341166824a3f6fa8fd9309",
+    "confname": "node"
+  }
+}
