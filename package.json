@@ -4,6 +4,10 @@
   "description": "Flow typed Graphql Server for koa 2.0",
   "author": "iamchenxin",
   "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamchenxin/koaql.git"
+  },
   "files": [
     "lib",
     "README.md"
