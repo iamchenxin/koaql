@@ -1,11 +1,14 @@
 // @flow
 
 import type { Context, Middleware } from 'koa';
-import { resolveOptions, resolveData, getGraphQLParams,
-  RD_Client_E, RD_Empty_Query} from './resolveData.js';
+import { resolveData } from './resolveData.js';
+import { resolveOptions } from './resolveOptions.js';
+import { getGraphQLParams } from './resolveParams.js';
+import { RD_Client_E, RD_Empty_Query } from './utils/tools.js';
 import { formatError } from 'graphql';
 import { renderGraphiQL } from './renderGraphiQL';
-import type { Options, OptionsData } from './resolveData.js';
+
+import type { Options, OptionsData } from './resolveOptions.js';
 import type { ExecutionResult } from 'graphql';
 
 
@@ -92,7 +95,7 @@ function iqlServer(options: Options): Middleware {
     ctx.set('Content-Type', 'text/html; charset=utf-8');
     ctx.body = payload;
     return;
-    
+
   }
 }
 
