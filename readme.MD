@@ -2,7 +2,7 @@ A bit like [express-graphql](https://github.com/graphql/express-graphql), but se
 
 Simple usage:
 ```
-import {qlServer, iqlServer} from 'graphql-koa';
+import {qlServer, iqlServer} from 'koaql';
 import koa from 'koa';
 const router = require('koa-router')();
 import {StarWarsSchema} from './starWarsSchema.js';

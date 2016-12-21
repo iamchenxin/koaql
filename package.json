@@ -1,7 +1,7 @@
 {
-  "name": "graphql-koa",
+  "name": "koaql",
   "version": "0.1.1",
-  "description": "none",
+  "description": "Flow typed Graphql Server for koa 2.0",
   "author": "iamchenxin",
   "main": "./lib/index.js",
   "files": [],
