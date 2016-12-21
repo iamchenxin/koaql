@@ -15,7 +15,6 @@ process.on('unhandledRejection', (reason, p) => {
   // application specific logging, throwing an error, or other logic here
 });
 
-
 async function ts() {
   const ql = qlServer({schema: StarWarsSchema});
   const iql = iqlServer({schema: StarWarsSchema});
@@ -30,3 +29,49 @@ async function ts() {
 ts().catch(e => {
   console.log(e);
 });
+
+
+/*
+query{
+  rebels{
+    id
+    name
+    ships(after: "",first: 6) {
+      pageInfo{
+        startCursor
+        endCursor
+        hasNextPage
+        hasPreviousPage
+      }
+      edges{
+        cursor
+        node{
+          name
+        }
+      }
+    }
+  }
+}
+
+mutation($in: IntroduceShipInput!){
+  introduceShip(input: $in){
+    ship{
+      id
+      name
+    },
+    faction{
+      id
+      name
+      ships{
+        edges{
+          node{
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}
+
+*/

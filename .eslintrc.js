@@ -17,7 +17,7 @@ module.exports = {
     "linebreak-style": [ERROR, "unix"],
     // fbjs: WARNING
     "semi": [ERROR, "always"],
-
+  //  "require-await": "error",
     // eslint-plugin-flowtype
     "flowtype/define-flow-type": WARNING,
     "flowtype/use-flow-type": WARNING,

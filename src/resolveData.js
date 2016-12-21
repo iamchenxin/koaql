@@ -111,6 +111,7 @@ type OptionsData = {
 
 class ResolveData_E extends HttpError {}
 class RD_Client_E extends ResolveData_E {}
+class RD_Empty_Query extends RD_Client_E {}
 class RD_Server_E extends ResolveData_E {}
 
 async function resolveOptions(options: Options, ctx: Context): Promise<OptionsData> {
@@ -133,10 +134,6 @@ type ResolvedResult = {
   data?: {[key: string]: mixed},
   errors?: Array<GraphQLError>,
   extensions?: Object,
-  // for dev ...
-  query: string | null,
-  variables: {[name: string]: mixed} | null,
-  operationName: string | null,
 };
 
 async function resolveData(optionsData: OptionsData, params: GraphQLParams,
@@ -152,7 +149,7 @@ async function resolveData(optionsData: OptionsData, params: GraphQLParams,
 
   // begin process data ...
   const { query, variables, operationName} = params;
-  invariant( query != null, new RD_Client_E(400, 'Must provide query string.'));
+  invariant( query != null, new RD_Empty_Query(400, 'Must provide query string.'));
 
   const source = new Source(query, 'GraphQL request');
   let documentAST = null;
@@ -217,9 +214,6 @@ async function resolveData(optionsData: OptionsData, params: GraphQLParams,
     data: result.data,
     errors: result.errors,
     extensions: result.extensions,
-    query: query,
-    variables: variables,
-    operationName: operationName,
   };
   return output;
 
@@ -285,6 +279,7 @@ export {
   getGraphQLParams,
   RD_Client_E,
   RD_Server_E,
+  RD_Empty_Query,
 } ;
 
 export type {
