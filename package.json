@@ -4,7 +4,10 @@
   "description": "Flow typed Graphql Server for koa 2.0",
   "author": "iamchenxin",
   "main": "./lib/index.js",
-  "files": [],
+  "files": [
+    "lib",
+    "README.md"
+  ],
   "scripts": {
     "test": "npm run jest",
     "lint": "node_modules/.bin/eslint .",
