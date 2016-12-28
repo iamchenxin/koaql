@@ -1,10 +1,9 @@
-// @flow
-// Its a bit different from Typescript, i thought something in d.ts is typo.
+// Its a bit different from Typescript def, i thought something in d.ts is typo.
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/types-2.0/koa/index.d.ts#L158
 // So i retyped this from source-code of koa2.
 declare module 'koa' {
-  //Currently, import type doesnt work well ?
-  // so copy from flow/lib/node.js#L820
+  // Currently, import type doesnt work well ?
+  // so copy `Server` from flow/lib/node.js#L820
   declare class Server extends net$Server {
     listen(port: number, hostname?: string, backlog?: number, callback?: Function): Server,
     listen(path: string, callback?: Function): Server,
@@ -14,6 +13,7 @@ declare module 'koa' {
     setTimeout(msecs: number, callback: Function): Server,
     timeout: number,
   }
+  declare type ServerType = Server;
 
   declare type JSON = | string | number | boolean | null | JSONObject | JSONArray;
   declare type JSONObject = { [key: string]: JSON };
@@ -27,7 +27,7 @@ declare module 'koa' {
   declare type RequestJSON = {
     'method': string,
     'url': string,
-    'header': Object,
+    'header': SimpleHeader,
   };
   declare type RequestInspect = void|RequestJSON;
   declare type Request = {
@@ -69,26 +69,26 @@ declare module 'koa' {
 //  ToDO: RP https://github.com/koajs/koa/pull/863
 //  Seems from the unit test, it returns a string[]string|false, without `void`
 //  https://github.com/jshttp/accepts/blob/master/test/type.js
-    accepts: ((arg: string[]) => string|false)&
-    ((...args: string[]) => string|false) &
+    accepts: ((args: string[]) => string|false)&
+    ((arg: string, ...args: string[]) => string|false) &
     ( () => string[] ) , // return the old value.
 
 //  https://github.com/jshttp/accepts/blob/master/index.js#L153
 //  https://github.com/jshttp/accepts/blob/master/test/charset.js
-    acceptsCharsets: ( (arg: string[]) => buffer$Encoding|false)&
-    ( (...args: string[]) => buffer$Encoding|false ) &
+    acceptsCharsets: ( (args: string[]) => buffer$Encoding|false)&
+    ( (arg: string, ...args: string[]) => buffer$Encoding|false ) &
     ( () => string[] ),
 
 //  https://github.com/jshttp/accepts/blob/master/index.js#L119
 //  https://github.com/jshttp/accepts/blob/master/test/encoding.js
-    acceptsEncodings: ( (arg: string[]) => string|false)&
-    ( (...args: string[]) => string|false ) &
+    acceptsEncodings: ( (args: string[]) => string|false)&
+    ( (arg: string, ...args: string[]) => string|false ) &
     ( () => string[] ),
 
 //  https://github.com/jshttp/accepts/blob/master/index.js#L185
 //  https://github.com/jshttp/accepts/blob/master/test/language.js
-    acceptsLanguages: ( (arg: string[]) => string|false) &
-    ( (...args: string[]) => string|false ) &
+    acceptsLanguages: ( (args: string[]) => string|false) &
+    ( (arg: string, ...args: string[]) => string|false ) &
     ( () => string[] ),
 
     get: (field: string) => string,
@@ -100,8 +100,8 @@ declare module 'koa' {
 * If there is no content type, `false` is returned.
 * Otherwise, it returns the first `type` that matches.
 */
-    is: ( (arg: string[]) => null|false|string)&
-    ( (...args: string[]) => null|false|string ) &
+    is: ( (args: string[]) => null|false|string)&
+    ( (arg: string, ...args: string[]) => null|false|string ) &
     ( () => string ), // should return the mime type
 
     toJSON: () => RequestJSON,
@@ -131,8 +131,8 @@ declare module 'koa' {
     // docs/api/response.md#L113.
     body: string|Buffer|stream$Stream|Object|null, // JSON contains null
     etag: string,
-    header: {[key: string]: mixed},
-    headers: {[key: string]: mixed}, // alias as header
+    header: SimpleHeader,
+    headers: SimpleHeader, // alias as header
     headerSent: boolean,
     // can be set with string|Date, but get with Date.
     // set lastModified(v: string|Date), // 0.36 doesn't support this.
@@ -152,7 +152,7 @@ declare module 'koa' {
     // https://github.com/jshttp/type-is/blob/master/test/test.js
     // https://github.com/koajs/koa/blob/v2.x/lib/response.js#L382
     is: ( (arg: string[]) => false|string) &
-    ( (...args: string[]) => false|string ) &
+    ( (arg: string, ...args: string[]) => false|string ) &
     ( () => string ), // should return the mime type
     redirect: (url: string, alt?: string) => void,
     remove: (field: string) => void,
@@ -288,7 +288,7 @@ declare module 'koa' {
     callback: (req: http$IncomingMessage, res: http$ServerResponse) => void,
     env: string,
     keys?: Array<string>|Object, // https://github.com/crypto-utils/keygrip
-    middleware: Array<Function>,
+    middleware: Array<Middleware>,
     name?: string, // optionally give your application a name
     proxy: boolean, // when true proxy header fields will be trusted
     request: Request,
