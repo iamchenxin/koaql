@@ -1,5 +1,5 @@
-// flow-typed signature: 269340ea4ca4555368bd144efc3753b4
-// flow-typed version: 2b78d73874/jest_v17.x.x/flow_>=v0.33.x
+// flow-typed signature: ad5f5c404d7e7026ea5b28412235dd5c
+// flow-typed version: c17c09b83f/jest_v17.x.x/flow_>=v0.33.x
 
 type JestMockFn = {
   (...args: Array<any>): any,
@@ -190,6 +190,11 @@ type JestExpectType = {
    */
   toHaveBeenCalledWith(...args: Array<any>): void,
   /**
+   * Check that an object has a .length property and it is set to a certain
+   * numeric value.
+   */
+  toHaveLength(number: number): void,
+  /**
    * Use .toMatch to check that a string matches a regular expression.
    */
   toMatch(regexp: RegExp): void,
@@ -369,6 +374,13 @@ declare var it: {
    * @param {Function} Test
    */
   skip(name: string, fn?: Function): ?Promise<void>,
+  /**
+   * Run the test concurrently
+   *
+   * @param {string} Name of Test
+   * @param {Function} Test
+   */
+  concurrent(name: string, fn?: Function): ?Promise<void>,
 };
 declare function fit(name: string, fn: Function): ?Promise<void>;
 /** An individual test unit */

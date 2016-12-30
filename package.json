@@ -27,8 +27,6 @@
     "graphql": "^0.8.2"
   },
   "devDependencies": {
-    "koa-router": "^7.0.1",
-    "relayql": "^0.1.3",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-eslint": "^6.1.2",
@@ -37,7 +35,8 @@
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-flowtype": "^2.29.1",
     "eslint-plugin-react": "^5.2.2",
-    "flow-bin": "^0.36.0",
+    "flow": "^0.2.3",
+    "flow-bin": "^0.37.4",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-babel": "^6.1.2",
     "gulp-rename": "^1.2.2",
@@ -45,6 +44,8 @@
     "init-preset-node": "^6.8.5",
     "init-scripts": "^0.0.2",
     "jest": "^17.0.3",
+    "koa-router": "^7.0.1",
+    "relayql": "^0.1.3",
     "supertest": "^2.0.1",
     "supertest-as-promised": "^4.0.2"
   },
